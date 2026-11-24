@@ -1,0 +1,66 @@
+name: ${COMPOSE_PROJECT_NAME:-omagent}
+services:
+  omagent:
+    # Collects exited browser processes; Chrome's shared memory as on the
+    # desktop containers (docs/browser-packaging.md, "Process hygiene").
+    init: true
+    shm_size: 512m
+    build:
+      context: ./deploy/local
+      args:
+        BASE_IMAGE: ${OMAGENT_BASE_IMAGE:-ghcr.io/benryanx/omagent-omarchy:latest}
+        ENGINES: ${ENGINES-@anthropic-ai/claude-code @openai/codex}
+    image: ${OMAGENT_LOCAL_IMAGE:-omagent-local:latest}
+    restart: unless-stopped
+    volumes:
+      - data:/data
+    ports:
+      - "${OMAGENT_BIND_ADDRESS:-127.0.0.1}:${OMAGENT_HTTP_PORT:-8080}:80"
+    environment:
+      OMAGENT_PORT: "8799"
+      OMAGENT_WEBHOOK_PORT: "8800"
+      OMAGENT_PUBLIC_URL: ${OMAGENT_PUBLIC_URL:-http://localhost:${OMAGENT_HTTP_PORT:-8080}}
+      OMAGENT_WEBHOOK_PUBLIC_URL: ${OMAGENT_WEBHOOK_PUBLIC_URL:-${OMAGENT_PUBLIC_URL:-http://localhost:${OMAGENT_HTTP_PORT:-8080}}}
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:8799/api/health', { signal: AbortSignal.timeout(4000) }).then(async r => { if (!r.ok || !(await r.text()).includes('omagent')) process.exit(1); }).catch(() => process.exit(1))"
+      interval: 15s
+      timeout: 5s
+      start_period: 30s
+      retries: 5
+  caddy:
+    image: ${CADDY_IMAGE:-caddy:2}
+    restart: unless-stopped
+    network_mode: service:omagent
+    environment:
+      OMAGENT_HTTPS_HOST: ${OMAGENT_HTTPS_HOST:-}
+      OMAGENT_BIND_ADDRESS: ${OMAGENT_BIND_ADDRESS:-127.0.0.1}
+    command:
+      - /bin/sh
+      - -ec
+      - |
+        export OMAGENT_UPSTREAM_SCHEME=http
+        if [ -n "$$OMAGENT_HTTPS_HOST" ] && [ "$$OMAGENT_BIND_ADDRESS" != "127.0.0.1" ]; then
+          echo "OMAGENT_HTTPS_HOST requires OMAGENT_BIND_ADDRESS=127.0.0.1; forward HTTPS through a trusted local proxy." >&2
+          exit 1
+        fi
+        if [ -n "$$OMAGENT_HTTPS_HOST" ]; then
+          export OMAGENT_UPSTREAM_SCHEME=https
+        fi
+        exec caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
+    depends_on:
+      omagent:
+        condition: service_healthy
+    volumes:
+      - ./deploy/local/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+volumes:
+  data:
+    external: ${OMAGENT_DATA_EXTERNAL:-false}
+    name: ${OMAGENT_DATA_VOLUME:-${COMPOSE_PROJECT_NAME:-omagent}_data}
+  caddy_data:
+  caddy_config:

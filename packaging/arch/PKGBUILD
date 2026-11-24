@@ -1,0 +1,23 @@
+pkgname=omagent
+pkgver=${OMAGENT_PACKAGE_VERSION:?Run node scripts/package-arch.mjs}
+pkgrel=1
+pkgdesc='A local-first workspace for teams of AI agents on Omarchy (experimental preview)'
+arch=('x86_64')
+url='https://github.com/benryanx/omagent-omarchy'
+license=('Apache-2.0')
+depends=('gtk3' 'nss' 'libxss' 'libnotify' 'libayatana-appindicator' 'ffmpeg' 'c-ares' 'libevent' 'libvpx' 'libxslt' 'minizip' 're2' 'snappy')
+options=('!strip' '!debug')
+source=('omagent-payload.tar.zst' 'omagent.desktop' 'omagent.svg')
+sha256sums=("${OMAGENT_PAYLOAD_SHA256:?Missing payload checksum}" "${OMAGENT_DESKTOP_SHA256:?Missing desktop checksum}" "${OMAGENT_ICON_SHA256:?Missing icon checksum}")
+
+package() {
+  install -dm755 "$pkgdir/opt/Omagent" "$pkgdir/usr/bin"
+  cp -a "$srcdir/payload/." "$pkgdir/opt/Omagent/"
+  find "$pkgdir/opt/Omagent" -type d -exec chmod 755 {} +
+  chmod 4755 "$pkgdir/opt/Omagent/chrome-sandbox"
+  ln -s /opt/Omagent/omagent "$pkgdir/usr/bin/omagent"
+  install -Dm644 "$srcdir/omagent.desktop" "$pkgdir/usr/share/applications/com.omarchy.agents.desktop"
+  install -Dm644 "$srcdir/omagent.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/omagent.svg"
+  install -Dm644 "$pkgdir/opt/Omagent/resources/licenses/Omagent-LICENSE.txt" "$pkgdir/usr/share/licenses/omagent/LICENSE"
+  install -Dm644 "$pkgdir/opt/Omagent/resources/licenses/Omagent-NOTICE.txt" "$pkgdir/usr/share/licenses/omagent/NOTICE"
+}

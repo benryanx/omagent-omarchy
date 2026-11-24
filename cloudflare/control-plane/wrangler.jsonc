@@ -1,0 +1,66 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "omagent-control-plane",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-25",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "workers_dev": false,
+  "routes": [],
+  "vars": {
+    "BETTER_AUTH_URL": "https://accounts.omagent.invalid",
+    "EMAIL_FROM": "noreply@omagent.invalid",
+    "ALLOWED_ORIGINS": "",
+    "CLOUDFLARE_ACCOUNT_ID": "",
+    "CLOUDFLARE_ZONE_ID": "",
+    "COMPANION_HOST_SUFFIX": "omagent.invalid",
+    "CLOUDFLARE_ENDPOINT_ACCOUNTS": [],
+    "OMAGENT_TUNNEL_LIMIT": "1000",
+    "OMAGENT_DNS_RECORD_LIMIT": "3500",
+    "OMAGENT_TUNNEL_RECLAIM": "on",
+    "OMAGENT_TUNNEL_OFFLINE_RECLAIM_DAYS": "3",
+    "OMAGENT_CLEANUP_SWEEP_LIMIT": "20",
+    "HIGHLEVEL_CLIENT_ID": "",
+    "HIGHLEVEL_REDIRECT_URL": "https://accounts.omagent.invalid/v1/highlevel/callback",
+    "HIGHLEVEL_SCOPES": "contacts.readonly contacts.write opportunities.readonly opportunities.write conversations.readonly locations.readonly calendars.readonly calendars/events.readonly users.readonly"
+  },
+  "secrets": {
+    "required": [
+      "BETTER_AUTH_SECRET",
+      "CLOUDFLARE_API_TOKEN"
+    ]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "omagent-control-plane",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "allowed_sender_addresses": [
+        "noreply@omagent.invalid"
+      ]
+    }
+  ],
+  "triggers": {
+    "crons": [
+      "*/5 * * * *"
+    ]
+  },
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1
+    },
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 0.05
+    }
+  }
+}

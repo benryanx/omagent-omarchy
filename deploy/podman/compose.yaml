@@ -1,0 +1,56 @@
+name: ${COMPOSE_PROJECT_NAME:-omagent-podman}
+services:
+  omagent:
+    build:
+      context: ../..
+      dockerfile: deploy/podman/Containerfile
+      args:
+        ENGINES: ${ENGINES:-}
+    image: localhost/omagent-podman:${OMAGENT_IMAGE_TAG:-local}
+    # Collects exited browser processes; Chrome's shared memory as on the
+    # desktop containers (docs/browser-packaging.md, "Process hygiene").
+    init: true
+    shm_size: 512m
+    userns_mode: keep-id:uid=1001,gid=1001
+    user: "1001:1001"
+    restart: unless-stopped
+    # On Windows this is the Linux Podman machine. The app must reach the
+    # dynamically allocated, loopback-only desktop ports on that same host.
+    network_mode: host
+    volumes:
+      - ${OMAGENT_DATA_ROOT:?Run setup.sh first}:${OMAGENT_DATA_ROOT}
+      - ${PODMAN_SOCKET:?Run setup.sh first}:/run/omagent-podman.sock
+    environment:
+      HOME: ${OMAGENT_DATA_ROOT}
+      OMAGENT_DATA_DIR: ${OMAGENT_DATA_ROOT}/.omagent
+      OMAGENT_STATIC_DIR: /app/dist
+      CONTAINER_HOST: unix:///run/omagent-podman.sock
+      OMAGENT_PORT: ${OMAGENT_PORT:-8799}
+      OMAGENT_WEBHOOK_PORT: ${OMAGENT_WEBHOOK_PORT:-8800}
+      OMAGENT_PUBLIC_URL: ${OMAGENT_PUBLIC_URL:-http://localhost:8080}
+      OMAGENT_WEBHOOK_PUBLIC_URL: ${OMAGENT_PUBLIC_URL:-http://localhost:8080}
+    healthcheck:
+      test: [CMD-SHELL, 'curl -fsS http://127.0.0.1:$$OMAGENT_PORT/api/health | grep -q omagent']
+      interval: 15s
+      timeout: 5s
+      start_period: 30s
+      retries: 5
+  caddy:
+    image: docker.io/library/caddy:2.11.4
+    restart: unless-stopped
+    network_mode: host
+    depends_on:
+      omagent:
+        condition: service_healthy
+    environment:
+      OMAGENT_HTTP_PORT: ${OMAGENT_HTTP_PORT:-8080}
+      OMAGENT_PORT: ${OMAGENT_PORT:-8799}
+      OMAGENT_WEBHOOK_PORT: ${OMAGENT_WEBHOOK_PORT:-8800}
+      OMAGENT_HTTPS_HOST: ${OMAGENT_HTTPS_HOST:-https-disabled.invalid}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+volumes:
+  caddy_data:
+  caddy_config:

@@ -1,0 +1,10 @@
+# Maintainer review is required on the open-core boundary, the cloud seam and
+# the licensing files. Enforced when the ruleset requires code-owner review.
+/server/enterprise.ts           @benryanx
+/server/enterprise.test.ts      @benryanx
+/server/brand.ts                @benryanx
+/server/tunnel.ts               @benryanx
+/cloudflare/control-plane/      @benryanx
+/LICENSE                        @benryanx
+/LICENSING.md                   @benryanx
+/.github/                       @benryanx

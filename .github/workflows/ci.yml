@@ -1,0 +1,36 @@
+name: Preview checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@ff378ebe6b225b0680b81c1ad4498ae0d1d3a5e3
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Scan source for credentials
+        run: |
+          curl --fail --silent --show-error --location https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz -o "$RUNNER_TEMP/gitleaks.tar.gz"
+          echo "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  $RUNNER_TEMP/gitleaks.tar.gz" | sha256sum --check -
+          tar -xzf "$RUNNER_TEMP/gitleaks.tar.gz" -C "$RUNNER_TEMP" gitleaks
+          OMAGENT_GITLEAKS_BINARY="$RUNNER_TEMP/gitleaks" node scripts/check-release-secrets.mjs
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm check:privacy
+      - run: pnpm check:branding
+      - run: pnpm i18n:check
+      - run: node --test electron/screen-status.node-test.mjs electron/omarchy-theme.node-test.mjs electron/preload-contract.node-test.mjs
+      - run: pnpm exec vitest run server/telegram.test.ts server/telegram.e2e.test.ts server/routes/bot-messages.test.ts server/provenance-label.test.ts server/agentcard.test.ts server/agentcard.e2e.test.ts src/lib/browser-stream-v1.test.ts src/components/browser/StreamSurface.test.ts
+      - run: pnpm build

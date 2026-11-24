@@ -1,0 +1,38 @@
+Copyright (c) 2026 Agentcard Corporation. All rights reserved.
+
+This software, including its source, compiled and minified code, models,
+word lists, recognizers and data files (the "Software"), is proprietary to
+Agentcard Corporation and is licensed, not sold.
+
+You may install and run the Software only to use Agentcard's services, under
+the terms you accepted when you signed up for them. If you integrate
+Agentcard into an application, you may include the Software, unmodified and
+as Agentcard publishes it, in that application and distribute the application
+to your end users so they can use Agentcard's services through it; this
+license binds every copy you distribute that way. Otherwise you may not, and
+may not help or allow anyone else to:
+
+1. copy, modify, translate or create derivative works of the Software, except
+   for copies made automatically when installing and running it or included
+   in an application as the paragraph above allows;
+2. reverse engineer, decompile, disassemble, deobfuscate or otherwise try to
+   derive the source, models, thresholds, word lists, recognizers or data of
+   the Software, except to the extent applicable law expressly permits it
+   despite this restriction;
+3. extract, scrape or reuse the Software's data, including its merchant,
+   processor and passphrase data, in any other product or service;
+4. use the Software, or anything learned from studying it, to build, train,
+   tune or benchmark a product or service that competes with Agentcard, or to
+   defeat or imitate its security checks;
+5. redistribute, sublicense, sell, rent or publish the Software apart from an
+   application as the paragraph above allows, or remove this notice from it.
+
+Agentcard keeps dated fingerprints of the Software's data. A match in
+another product or data set is evidence that it was copied from the
+Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED. IN NO EVENT SHALL AGENTCARD CORPORATION BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY ARISING FROM THE SOFTWARE OR ITS USE.
+
+Questions: legal@agentcard.com

@@ -1,0 +1,200 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+:root {
+  --omagent-bg: #ffffff;
+  --omagent-raised: #f7f8f8;
+  --omagent-ink: #0a0a0b;
+  --omagent-muted: #5f6570;
+  --omagent-line: #e5e7ea;
+  --omagent-accent: #009957;
+  --omagent-accent-soft: #eaf8f1;
+
+  --color-fd-background: var(--omagent-bg);
+  --color-fd-foreground: var(--omagent-ink);
+  --color-fd-muted: var(--omagent-raised);
+  --color-fd-muted-foreground: var(--omagent-muted);
+  --color-fd-border: var(--omagent-line);
+  --color-fd-primary: var(--omagent-accent);
+  --color-fd-primary-foreground: #ffffff;
+  --color-fd-card: var(--omagent-bg);
+  --color-fd-card-foreground: var(--omagent-ink);
+  --color-fd-secondary: var(--omagent-raised);
+  --color-fd-secondary-foreground: var(--omagent-ink);
+  --color-fd-accent: var(--omagent-accent-soft);
+  --color-fd-accent-foreground: #006b3d;
+}
+
+.dark {
+  --omagent-bg: #070708;
+  --omagent-raised: #131315;
+  --omagent-ink: #f4f4f5;
+  --omagent-muted: #9a9aa4;
+  --omagent-line: #232327;
+  --omagent-accent: #3fae6e;
+  --omagent-accent-soft: #10271a;
+
+  --color-fd-primary-foreground: #07130c;
+  --color-fd-accent-foreground: #7bd69e;
+}
+
+html {
+  scrollbar-gutter: stable;
+  background: var(--omagent-bg);
+}
+
+html > body[data-scroll-locked] {
+  margin-right: 0 !important;
+  --removed-body-scroll-bar-size: 0px !important;
+}
+
+body {
+  background:
+    radial-gradient(circle at 75% -20%, color-mix(in srgb, var(--omagent-accent) 8%, transparent), transparent 32rem),
+    var(--omagent-bg);
+  color: var(--omagent-ink);
+  letter-spacing: -0.012em;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--omagent-accent) 24%, transparent);
+}
+
+.omagent-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.9rem;
+  font-weight: 660;
+  letter-spacing: -0.02em;
+}
+
+.omagent-brand img {
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 0.5rem;
+}
+
+.omagent-brand-docs {
+  border-left: 1px solid var(--omagent-line);
+  color: var(--omagent-muted);
+  font-size: 0.78rem;
+  font-weight: 520;
+  letter-spacing: 0;
+  margin-left: 0.1rem;
+  padding-left: 0.7rem;
+}
+
+.omagent-product-shot {
+  margin: 2rem 0;
+}
+
+.omagent-product-shot-frame {
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--omagent-line) 88%, transparent);
+  border-radius: 1.25rem;
+  background: #0a0a0b;
+  box-shadow:
+    0 1px 1px color-mix(in srgb, var(--omagent-ink) 5%, transparent),
+    0 22px 60px color-mix(in srgb, var(--omagent-ink) 10%, transparent);
+}
+
+.omagent-product-shot img {
+  display: block;
+  width: 100%;
+  max-height: 38rem;
+  object-fit: cover;
+}
+
+.omagent-product-shot figcaption {
+  color: var(--omagent-muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  margin-top: 0.65rem;
+  text-align: center;
+}
+
+.omagent-kicker {
+  color: var(--omagent-accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.omagent-lede {
+  color: var(--omagent-muted);
+  font-size: 1.08rem;
+  line-height: 1.75;
+  max-width: 44rem;
+}
+
+.omagent-stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.75rem 0;
+}
+
+.omagent-stat {
+  border: 1px solid var(--omagent-line);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--omagent-raised) 78%, transparent);
+  padding: 1rem;
+}
+
+.omagent-stat strong,
+.omagent-stat span {
+  display: block;
+}
+
+.omagent-stat strong {
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.omagent-stat span {
+  color: var(--omagent-muted);
+  font-size: 0.78rem;
+  margin-top: 0.2rem;
+}
+
+#nd-sidebar,
+#nd-subnav {
+  background: color-mix(in srgb, var(--omagent-bg) 92%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+#nd-sidebar {
+  border-right-color: var(--omagent-line);
+}
+
+#nd-subnav {
+  border-bottom-color: var(--omagent-line);
+}
+
+.prose :where(h2, h3, h4) {
+  letter-spacing: -0.035em;
+}
+
+.prose :where(a:not([data-card])) {
+  text-decoration-color: color-mix(in srgb, var(--omagent-accent) 45%, transparent);
+  text-underline-offset: 0.2em;
+}
+
+.prose :where(table) {
+  overflow: hidden;
+  border: 1px solid var(--omagent-line);
+  border-radius: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .omagent-stat-row {
+    grid-template-columns: 1fr;
+  }
+
+  .omagent-product-shot-frame {
+    border-radius: 0.9rem;
+  }
+}

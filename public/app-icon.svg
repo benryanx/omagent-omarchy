@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Omagent</title>
+  <desc id="desc">The Omarchy maze mascot with a friendly pair of eyes</desc>
+  <defs>
+    <linearGradient id="tile" x1="120" y1="80" x2="890" y2="940" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#182333"/>
+      <stop offset="1" stop-color="#070b12"/>
+    </linearGradient>
+  </defs>
+  <rect x="32" y="32" width="960" height="960" rx="190" fill="url(#tile)"/>
+  <g fill="none" stroke="#b8c8ad" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M190 450V190h260M574 190h260v644H650M450 834H190V574" stroke-width="62"/>
+    <path d="M318 450V318h258v86H404v306h306V318h-86v152" stroke-width="50" opacity=".82"/>
+  </g>
+  <g>
+    <ellipse cx="440" cy="505" rx="73" ry="91" fill="#f6f0df"/>
+    <ellipse cx="584" cy="505" rx="73" ry="91" fill="#f6f0df"/>
+    <circle cx="457" cy="516" r="31" fill="#0a101a"/>
+    <circle cx="601" cy="516" r="31" fill="#0a101a"/>
+    <circle cx="467" cy="505" r="9" fill="#fff"/>
+    <circle cx="611" cy="505" r="9" fill="#fff"/>
+  </g>
+</svg>

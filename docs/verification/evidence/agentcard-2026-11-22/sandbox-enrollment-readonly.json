@@ -1,0 +1,14 @@
+{
+  "result": "passed",
+  "mode": "sandbox (confirmed by prior provider mode probe)",
+  "ownerUserHash": "d3203485b0c5649d5533abf8126021677f9d6fd3eec313fb833df54f83e6d896",
+  "cards": [
+    {
+      "brand": "visa",
+      "last4": "4242"
+    }
+  ],
+  "returningUserCreatedSessions": 0,
+  "privateLinkReturned": false,
+  "realServiceMutationsBlocked": true
+}

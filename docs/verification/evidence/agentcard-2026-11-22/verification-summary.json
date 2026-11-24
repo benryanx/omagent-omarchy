@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-22",
+  "timezone": "Australia/Brisbane",
+  "runs": [
+    {
+      "check": "Checkout recovery regressions",
+      "sourceLog": "/tmp/omagent-agentcard-recovery-all.log",
+      "passed": 96,
+      "scope": "Separate focused run; counts overlap with other runs."
+    },
+    {
+      "check": "Checkout recovery real browsers",
+      "sourceLog": "/tmp/omagent-agentcard-recovery-browser.log",
+      "passed": 4,
+      "scope": "Separate focused run; counts overlap with other runs."
+    },
+    {
+      "check": "Final receipt focused regressions",
+      "sourceLog": "/tmp/omagent-agentcard-receipt-regressions.log",
+      "passed": 71,
+      "scope": "Separate focused run; counts overlap with other runs."
+    },
+    {
+      "check": "Final receipt unit and real browser checks",
+      "sourceLog": "/tmp/omagent-agentcard-receipt-tests.log",
+      "passed": 27,
+      "scope": "Separate focused run; counts overlap with other runs."
+    },
+    {
+      "check": "Application build after checkout recovery",
+      "sourceLog": "/tmp/omagent-agentcard-recovery-build.log",
+      "result": "passed"
+    },
+    {
+      "check": "Server build after final receipt fix",
+      "sourceLog": "/tmp/omagent-agentcard-receipt-build.log",
+      "result": "passed"
+    },
+    {
+      "check": "Lint after final receipt fix",
+      "sourceLog": "/tmp/omagent-agentcard-receipt-lint.log",
+      "result": "passed"
+    }
+  ],
+  "realSandboxPurchase": "Performed and approved by the user. Automated fixtures did not place purchases."
+}

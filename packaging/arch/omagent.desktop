@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Omagent
+Comment=A local-first workspace for teams of AI agents
+Exec=omagent %U
+Icon=omagent
+Terminal=false
+Categories=Utility;
+StartupWMClass=Omagent
+MimeType=x-scheme-handler/omagent;
+Keywords=AI;Agents;Chat;Productivity;

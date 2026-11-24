@@ -1,0 +1,410 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Generated translation source hashes; values are SHA-256 source fingerprints"
+paths = ["^src/locales/source-hashes\\.json$"]
+
+[[allowlists]]
+description = "Non-secret source syntax"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qcloudflare/control-plane/src/push.ts\\E$"]
+regexes = [
+  "(?s)^\\Q-----BEGIN PRIVATE KEY-----\\n[\\s\\S]+\\n-----END PRIVATE KEY-----$/.test(privateKey)) return null;\n  const listed = typeof vars.APNS_ENVIRONMENTS === \"string\" && vars.APNS_ENVIRONMENTS.trim()\n    ? vars.APNS_ENVIRONMENTS.split(\",\").map((value) => value.trim())\n    : [\"production\"];\n  if (!listed.every((value) => value === \"production\" || value === \"sandbox\")) return null;\n  return { keyId, teamId, privateKey, bundleId, environments: new Set(listed as ApnsEnvironment[]) };\n}\n\nfunction base64url(bytes: ArrayBuffer | Uint8Array): string {\n  let binary = \"\";\n  for (const byte of new Uint8Array(bytes)) binary += String.fromCharCode(byte);\n  return btoa(binary).replaceAll(\"+\", \"-\").replaceAll(\"/\", \"_\").replace(/=+$/, \"\");\n}\n\nfunction pemBytes(pem: string): Uint8Array<ArrayBuffer> {\n  const body = pem.replace(/-----(?:BEGIN|END) PRIVATE KEY-----\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qcloudflare/control-plane/test/highlevel.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Ql1C08ntBrFjLS0elLIYU\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qelectron/device-chrome.node-test.mjs\\E$"]
+regexes = [
+  "(?s)^\\QdGhlIHNhbXBsZSBub25jZQ==\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qelectron/diagnostics.test.mjs\\E$"]
+regexes = [
+  "(?s)^\\Q-----BEGIN PRIVATE KEY-----\",\n        \"super-secret-line-one\",\n        \"super-secret-line-two\",\n        \"-----END PRIVATE KEY-----\\E$",
+  "(?s)^\\Qak_live_abcdef123456789\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/admin-activity.e2e.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qacme_live_9f8e7d6c5b4a3f2e1d0c\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/admin-activity.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qacme_live_9f8e7d6c5b4a3f2e1d0c\\E$",
+  "(?s)^\\Qtok_live_123456\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/bot-box/broker-mcp.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qsecret-0f9e8d7c6b5a\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/bot-box/broker-probe.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Q0f9e8d7c6b5a4938271605\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/cloud-home.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Q0f5e6c4a-1b2c-4d3e-8f9a-0b1c2d3e4f5a\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/cloud-lending-chrome.e2e.test.ts\\E$"]
+regexes = [
+  "(?s)^\\QdGhlIHNhbXBsZSBub25jZQ==\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/cloud-send-verify.test.ts\\E$"]
+regexes = [
+  "(?s)^\\QGEZDGNBVGY3TQOJQ\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/comms.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qcomms-test-capability-key-0123456789abcdef\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/decider/helper-backends.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qsk-or-v1-order-key-0123456789\\E$",
+  "(?s)^\\Qtsk_order_jev_key_0123456789\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/decision-log.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qsk-live-abcdefghijklmnop1234\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/devs-report.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Q-----BEGIN PRIVATE KEY-----\\nMIIBVgIBADANBgkqhkiG9w0BAQEFAASCAUAwggE8AgEAAkEA\\n-----END PRIVATE KEY-----\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/drivers/openai-responses.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qfixture-key-5d0a1c\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/highlevel/client.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qpit-0f1e2d3c-4b5a-6978-8796-a5b4c3d2e1f0\\E$",
+  "(?s)^\\Qpit-fixture-revoked-1\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/highlevel/sign-in.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qpit-abcdefgh12345678\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/index.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qalias-fixture-123\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/mcp-bot-rules.test.ts\\E$"]
+regexes = [
+  "(?s)^\\QZk9QxW2mT7aBcD4eF6gH8jK1\\E$",
+  "(?s)^\\Qplainopaque123xyz\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/mcp-strict-handshake.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qrotated-api-key-0001\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/package-export.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qabcdef12345678/\\E$",
+  "(?s)^\\Qabcdef1234567890abcdef\\E$",
+  "(?s)^\\Qsk_live_abcdef1234567890abcdef\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/phone-secret.test.ts\\E$"]
+regexes = [
+  "(?s)^\\QBDhy_5hMSvVIy3zGSmBwBECAedYBAwwFLvbWoXCGTJyLRH1cItoQXo9NBcEG0cTQV_VwaEf5judXcsJlh2jfW7Q\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/redact.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Q-----BEGIN OPENSSH PRIVATE KEY-----\\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW\\n-----END OPENSSH PRIVATE KEY-----\\E$",
+  "(?s)^\\Q-----BEGIN PRIVATE KEY-----\",\n      privateKeyBody,\n      \"-----END PRIVATE KEY-----\",\n    ].join(\"\\n\");\n    const once = redactSecretsInText(`before\\n${pem}\\nafter`);\n\n    expect(redactSecretsInText(once)).toBe(once);\n    expect(once).toContain(`\u00abredacted ${privateKeyBody.length} chars\u00bb`);\n  });\n\n  it(\"masks the value of a secret-shaped key=value or key: value, keeping the key\", () => {\n    expect(redactSecretsInText(\"export DATABASE_PASSWORD=hunter2hunter2\")).toBe(\"export DATABASE_PASSWORD=\u00abredacted 14 chars\u00bb\");\n    expect(redactSecretsInText('{\"api_key\": \"abcd1234efgh5678\"}')).toBe('{\"api_key\": \"\u00abredacted 16 chars\u00bb\"}');\n    expect(redactSecretsInText(\"client_secret: 'zzzz-yyyy-xxxx-1'\")).toBe(\"client_secret: '\u00abredacted 16 chars\u00bb'\");\n    expect(redactSecretsInText(\"--token=abc123def456\")).toBe(\"--token=\u00abredacted 12 chars\u00bb\");\n  });\n\n  it(\"masks an assignment to any name ending in KEY, whatever the value looks like\", () => {\n    expect(redactSecretsInText(`OPENAI_API_KEY=sk-${\"a\".repeat(20)} pnpm test`)).toBe(\"OPENAI_API_KEY=\u00abredacted 23 chars\u00bb pnpm test\");\n    expect(redactSecretsInText(\"X_KEY=value pnpm control:omagent doctor\")).toBe(\"X_KEY=\u00abredacted 5 chars\u00bb pnpm control:omagent doctor\");\n    expect(redactSecretsInText(\"export xai-key='abc.def'\")).toBe(\"export xai-key='\u00abredacted 7 chars\u00bb'\");\n  });\n\n  it(\"masks the password in a URL's userinfo, keeping the user and the host\", () => {\n    expect(redactSecretsInText(\"psql postgres://omagent:s3cret@db.internal:5432/app\")).toBe(\"psql postgres://omagent:\u00abredacted 6 chars\u00bb@db.internal:5432/app\");\n    expect(redactSecretsInText(\"curl https://user:p%40ss@host/path\")).toBe(\"curl https://user:\u00abredacted 6 chars\u00bb@host/path\");\n  });\n\n  it(\"masks the value of a secret-naming flag, in both spellings\", () => {\n    expect(redactSecretsInText(\"gh auth login --token abc123\")).toBe(\"gh auth login --token \u00abredacted 6 chars\u00bb\");\n    expect(redactSecretsInText(\"tool --password=hunter2 --api-key 'k1' --secret s\")).toBe(\"tool --password=\u00abredacted 7 chars\u00bb --api-key '\u00abredacted 2 chars\u00bb' --secret \u00abredacted 1 chars\u00bb\");\n    expect(redactSecretsInText(\"tool --token --verbose\")).toBe(\"tool --token --verbose\");\n  });\n\n  it(\"does not mask ordinary words near those rules\", () => {\n    for (const s of [\n      \"hotkey=cmd+k keyboard=qwerty monkey=business\",\n      \"https://host:8080/path and user@host\",\n      \"git log --tokens-are-not-a-flag --passwords\",\n      \"the key: patience\",\n    ]) {\n      expect(redactSecretsInText(s), s).toBe(s);\n    }\n  });\n\n  it(\"leaves ordinary text, code, hashes and URLs alone\", () => {\n    for (const s of [\n      \"the keyboard shortcut is cmd-k\",\n      \"git commit 3f2a9c1e7b4d5a6f8e9c0b1a2d3e4f5a6b7c8d9e\",\n      \"https://example.com/path?page=2&sort=asc\",\n      \"const token = await getToken(); // fetches later\",\n      \"password: (leave blank to keep the current one)\",\n      \"Bearer tokens are sent in the Authorization header\",\n      \"sk-8\",\n    ]) {\n      expect(redactSecretsInText(s), s).toBe(s);\n    }\n  });\n\n  it(\"is applied to string values inside redactSecrets too\", () => {\n    const out = redactSecrets({ command: \"curl -H 'Authorization: Bearer abcdefghijklmnop'\", note: \"fine\" }) as Record<string, string>;\n    expect(out.command).toContain(\"\u00abredacted\");\n    expect(out.note).toBe(\"fine\");\n  });\n\n  it(\"is idempotent for structurally identified credentials\", () => {\n    const input = {\n      apiKey: \"abcdefgh12345678\",\n      env: [{ name: \"OMAGENT_COMMS_TOKEN\", value: \"abcdefghijklmnop\" }],\n    };\n    const once = redactSecrets(input);\n\n    expect(redactSecrets(once)).toEqual(once);\n  });\n});\n\ndescribe(\"holdsCredential\", () => {\n  it(\"knows a provider key or a private key block, never a name, a placeholder or code that reads one\", () => {\n    for (const text of [\n      '{\"apiKey\": \"sk-ant-api03-0123456789abcdefABCD\"}', \"GITHUB_TOKEN=ghp_0123456789abcdefghij0123\", \"-----BEGIN OPENSSH PRIVATE KEY-----\\E$",
+  "(?s)^\\Q-----BEGIN PRIVATE KEY-----\",\n      privateKeyBody,\n      \"-----END PRIVATE KEY-----\",\n    ].join(\"\\n\");\n    const once = redactSecretsInText(`before\\n${pem}\\nafter`);\n\n    expect(redactSecretsInText(once)).toBe(once);\n    expect(once).toContain(`\u00abredacted ${privateKeyBody.length} chars\u00bb`);\n  });\n\n  it(\"masks the value of a secret-shaped key=value or key: value, keeping the key\", () => {\n    expect(redactSecretsInText(\"export DATABASE_PASSWORD=hunter2hunter2\")).toBe(\"export DATABASE_PASSWORD=\u00abredacted 14 chars\u00bb\");\n    expect(redactSecretsInText('{\"api_key\": \"abcd1234efgh5678\"}')).toBe('{\"api_key\": \"\u00abredacted 16 chars\u00bb\"}');\n    expect(redactSecretsInText(\"client_secret: 'zzzz-yyyy-xxxx-1'\")).toBe(\"client_secret: '\u00abredacted 16 chars\u00bb'\");\n    expect(redactSecretsInText(\"--token=abc123def456\")).toBe(\"--token=\u00abredacted 12 chars\u00bb\");\n  });\n\n  it(\"masks an assignment to any name ending in KEY, whatever the value looks like\", () => {\n    expect(redactSecretsInText(`OPENAI_API_KEY=sk-${\"a\".repeat(20)} pnpm test`)).toBe(\"OPENAI_API_KEY=\u00abredacted 23 chars\u00bb pnpm test\");\n    expect(redactSecretsInText(\"X_KEY=value pnpm control:omagent doctor\")).toBe(\"X_KEY=\u00abredacted 5 chars\u00bb pnpm control:omagent doctor\");\n    expect(redactSecretsInText(\"export xai-key='abc.def'\")).toBe(\"export xai-key='\u00abredacted 7 chars\u00bb'\");\n  });\n\n  it(\"masks the password in a URL's userinfo, keeping the user and the host\", () => {\n    expect(redactSecretsInText(\"psql postgres://omagent:s3cret@db.internal:5432/app\")).toBe(\"psql postgres://omagent:\u00abredacted 6 chars\u00bb@db.internal:5432/app\");\n    expect(redactSecretsInText(\"curl https://user:p@ss@host/path\")).toBe(\"curl https://user:\u00abredacted 6 chars\u00bb@host/path\");\n  });\n\n  it(\"masks the value of a secret-naming flag, in both spellings\", () => {\n    expect(redactSecretsInText(\"gh auth login --token abc123\")).toBe(\"gh auth login --token \u00abredacted 6 chars\u00bb\");\n    expect(redactSecretsInText(\"tool --password=hunter2 --api-key 'k1' --secret s\")).toBe(\"tool --password=\u00abredacted 7 chars\u00bb --api-key '\u00abredacted 2 chars\u00bb' --secret \u00abredacted 1 chars\u00bb\");\n    expect(redactSecretsInText(\"tool --token --verbose\")).toBe(\"tool --token --verbose\");\n  });\n\n  it(\"does not mask ordinary words near those rules\", () => {\n    for (const s of [\n      \"hotkey=cmd+k keyboard=qwerty monkey=business\",\n      \"https://host:8080/path and user@host\",\n      \"git log --tokens-are-not-a-flag --passwords\",\n      \"the key: patience\",\n    ]) {\n      expect(redactSecretsInText(s), s).toBe(s);\n    }\n  });\n\n  it(\"leaves ordinary text, code, hashes and URLs alone\", () => {\n    for (const s of [\n      \"the keyboard shortcut is cmd-k\",\n      \"git commit 3f2a9c1e7b4d5a6f8e9c0b1a2d3e4f5a6b7c8d9e\",\n      \"https://example.com/path?page=2&sort=asc\",\n      \"const token = await getToken(); // fetches later\",\n      \"password: (leave blank to keep the current one)\",\n      \"Bearer tokens are sent in the Authorization header\",\n      \"sk-8\",\n    ]) {\n      expect(redactSecretsInText(s), s).toBe(s);\n    }\n  });\n\n  it(\"is applied to string values inside redactSecrets too\", () => {\n    const out = redactSecrets({ command: \"curl -H 'Authorization: Bearer abcdefghijklmnop'\", note: \"fine\" }) as Record<string, string>;\n    expect(out.command).toContain(\"\u00abredacted\");\n    expect(out.note).toBe(\"fine\");\n  });\n\n  it(\"is idempotent for structurally identified credentials\", () => {\n    const input = {\n      apiKey: \"abcdefgh12345678\",\n      env: [{ name: \"OMAGENT_COMMS_TOKEN\", value: \"abcdefghijklmnop\" }],\n    };\n    const once = redactSecrets(input);\n\n    expect(redactSecrets(once)).toEqual(once);\n  });\n});\n\ndescribe(\"holdsCredential\", () => {\n  it(\"knows a provider key or a private key block, never a name, a placeholder or code that reads one\", () => {\n    for (const text of [\n      '{\"apiKey\": \"sk-ant-api03-0123456789abcdefABCD\"}', \"GITHUB_TOKEN=ghp_0123456789abcdefghij0123\", \"-----BEGIN OPENSSH PRIVATE KEY-----\\E$",
+  "(?s)^\\QAKIAABCDEFGHIJKLMNOP\\E$",
+  "(?s)^\\Qabc.def-ghi_jkl123456789\\E$",
+  "(?s)^\\Qabc123def456\\E$",
+  "(?s)^\\Qabcd1234efgh5678\\E$",
+  "(?s)^\\Qabcdefgh12345678\\E$",
+  "(?s)^\\Qabcdefghijklmnop\\E$",
+  "(?s)^\\Qc3VwZXItc2VjcmV0LXByaXZhdGUta2V5LWJ5dGVz\\E$",
+  "(?s)^\\QdXNlcjpodW50ZXIy\\E$",
+  "(?s)^\\QeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\\E$",
+  "(?s)^\\Qghp_0123456789abcdefghij0123\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/remote-sessions.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qsk-proj-fixture-hint-a1b2\\E$",
+  "(?s)^\\Qsk-proj-fixture-live-b2c3\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/request-auth.e2e.test.ts\\E$"]
+regexes = [
+  "(?s)^\\QdGhlIHNhbXBsZSBub25jZQ==\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/routes/browser-viewers.test.ts\\E$"]
+regexes = [
+  "(?s)^\\QdGhlIHNhbXBsZSBub25jZQ==\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/routes/desktop-viewer.test.ts\\E$"]
+regexes = [
+  "(?s)^\\QdGhlIHNhbXBsZSBub25jZQ==\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/routes/internal-mcp.test.ts\\E$"]
+regexes = [
+  "(?s)^\\QZk9QxW2mT7aBcD4eF6gH8jK1\\E$",
+  "(?s)^\\Qplainopaque123xyz\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/routes/mcp-servers.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Q0f9e8d7c6b5a4938271605\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/routes/openai-compat-endpoints.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qsk-test-0123456789\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/routes/team-library-grok.test.ts\\E$"]
+regexes = [
+  "(?s)^\\QeyJhbGciOiJIUzI1NiJ9.eyJleHAiOjQxMDI0NDQ4MDB9.c2lnbmF0dXJlLXZhbHVl\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/safety-floor-gate.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qsk-live-1234567890abcdef\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/safety-floor.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qsk-live-1234567890\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qserver/step-summary.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qabcdefgh12345678\\E$",
+  "(?s)^\\Qabcdefghijklmnop123456\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qshared/package-format.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qabcdefgh12345678\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qsrc/components/McpServersPanel.add.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qsecret-9d8e7f6a5b4c3d2e1f\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qsrc/components/OpenAiCompatServers.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qsk-ZZtestSECRET0123456789\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qsrc/components/SecretRequestCard.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qak_ZZtestSECRET0123456789\\E$",
+  "(?s)^\\Qboat_ZZtestSECRET0123456789abcdef\\E$",
+  "(?s)^\\Qops_ZZtestSECRET0123456789\\E$",
+  "(?s)^\\Qsk_live_ZZtestSECRET0123456789\\E$",
+  "(?s)^\\Qxai-ZZtestSECRET0123456789\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qsrc/components/XCard.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qtreg_live_0123456789\\E$",
+]
+
+[[allowlists]]
+description = "Non-secret source syntax"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qsrc/components/browser/StreamSurface.tsx\\E$"]
+regexes = [
+  "(?s)^\\QShift+Escape\\E$",
+]
+
+[[allowlists]]
+description = "Reviewed synthetic fixture values"
+condition = "AND"
+regexTarget = "secret"
+paths = ["^\\Qsrc/components/keys/KeysPage.dom.test.ts\\E$"]
+regexes = [
+  "(?s)^\\Qsk-proj-abcdefghijklmnopa1b2\\E$",
+]

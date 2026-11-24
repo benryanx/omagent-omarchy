@@ -1,0 +1,94 @@
+{
+  "omarchy-catppuccin": {
+    "color": "#1e1e2e",
+    "symbolColor": "#cdd6f4"
+  },
+  "omarchy-catppuccin-latte": {
+    "color": "#eff1f5",
+    "symbolColor": "#4c4f69"
+  },
+  "omarchy-ethereal": {
+    "color": "#060B1E",
+    "symbolColor": "#ffcead"
+  },
+  "omarchy-everforest": {
+    "color": "#2d353b",
+    "symbolColor": "#d3c6aa"
+  },
+  "omarchy-flexoki-light": {
+    "color": "#FFFCF0",
+    "symbolColor": "#100F0F"
+  },
+  "omarchy-gruvbox": {
+    "color": "#282828",
+    "symbolColor": "#d4be98"
+  },
+  "omarchy-hackerman": {
+    "color": "#0B0C16",
+    "symbolColor": "#ddf7ff"
+  },
+  "omarchy-jade-horse": {
+    "color": "#142620",
+    "symbolColor": "#dfede5"
+  },
+  "omarchy-kanagawa": {
+    "color": "#1f1f28",
+    "symbolColor": "#dcd7ba"
+  },
+  "omarchy-last-horizon": {
+    "color": "#0c0b0c",
+    "symbolColor": "#FAFCFB"
+  },
+  "omarchy-lumon": {
+    "color": "#16242d",
+    "symbolColor": "#d6e2ee"
+  },
+  "omarchy-lupine": {
+    "color": "#fafafa",
+    "symbolColor": "#212121"
+  },
+  "omarchy-matte-black": {
+    "color": "#121212",
+    "symbolColor": "#bebebe"
+  },
+  "omarchy-miasma": {
+    "color": "#222222",
+    "symbolColor": "#c2c2b0"
+  },
+  "omarchy-nord": {
+    "color": "#2e3440",
+    "symbolColor": "#d8dee9"
+  },
+  "omarchy-retro-82": {
+    "color": "#05182e",
+    "symbolColor": "#f6dcac"
+  },
+  "omarchy-ristretto": {
+    "color": "#2c2525",
+    "symbolColor": "#e6d9db"
+  },
+  "omarchy-rose-pine": {
+    "color": "#faf4ed",
+    "symbolColor": "#575279"
+  },
+  "omarchy-solitude": {
+    "color": "#101315",
+    "symbolColor": "#cacccc"
+  },
+  "omarchy-starship": {
+    "color": "#1c1c1e",
+    "symbolColor": "#f5f5f7"
+  },
+  "omarchy-tokyo-night": {
+    "color": "#1a1b26",
+    "symbolColor": "#a9b1d6"
+  },
+  "omarchy-vantablack": {
+    "color": "#000000",
+    "symbolColor": "#ffffff"
+  },
+  "omarchy-white": {
+    "color": "#ffffff",
+    "symbolColor": "#000000"
+  }
+}

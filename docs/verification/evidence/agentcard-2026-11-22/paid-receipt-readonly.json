@@ -1,0 +1,12 @@
+{
+  "readOnly": true,
+  "evidence": [
+    {
+      "merchant": "shop.agentcard.sh",
+      "amount": 583,
+      "currency": "usd",
+      "receiptRecognized": true,
+      "hasChargeReference": true
+    }
+  ]
+}
